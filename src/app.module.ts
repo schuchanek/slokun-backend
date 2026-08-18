@@ -7,6 +7,7 @@ import { VenuesModule } from './venues/venues.module';
 import { Review } from './entities/review.entity';
 import { User } from './entities/user.entity';
 import { Venue } from './entities/venue.entity';
+import { HealthController } from './common/health.controller';
 
 @Module({
   imports: [
@@ -28,5 +29,6 @@ import { Venue } from './entities/venue.entity';
     AuthModule,
     VenuesModule,
   ],
+  controllers: [HealthController],
 })
 export class AppModule {}
