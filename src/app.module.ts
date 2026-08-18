@@ -7,7 +7,11 @@ import { VenuesModule } from './venues/venues.module';
 import { Review } from './entities/review.entity';
 import { User } from './entities/user.entity';
 import { Venue } from './entities/venue.entity';
+import { Event } from './entities/event.entity';
+import { Attendance } from './entities/attendance.entity';
+import { MobileProvider } from './entities/mobile-provider.entity';
 import { HealthController } from './common/health.controller';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -20,7 +24,7 @@ import { HealthController } from './common/health.controller';
         username: process.env.POSTGRES_USER || 'postgres',
         password: process.env.POSTGRES_PASSWORD || 'postgres',
         database: process.env.POSTGRES_DB || 'slokun_dev',
-        entities: [User, Venue, Review],
+        entities: [User, Venue, Review, Event, Attendance, MobileProvider],
         synchronize: process.env.NODE_ENV !== 'production',
         logging: process.env.NODE_ENV !== 'production',
       }),
@@ -28,6 +32,7 @@ import { HealthController } from './common/health.controller';
     UsersModule,
     AuthModule,
     VenuesModule,
+    EventsModule,
   ],
   controllers: [HealthController],
 })

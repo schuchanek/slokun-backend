@@ -33,8 +33,10 @@ export class VenuesService {
   }
 
   async attend(venueId: string, userId: string) {
-    // simple attendance stub: in real app create attendance table
-    const v = await this.findById(venueId);
-    return { message: `User ${userId} will attend ${v.id}` };
+    const venue = await this.findById(venueId);
+    const attendanceRepo = this.repo.manager.getRepository('Attendance');
+    // create attendance record
+    const a = attendanceRepo.create({ venue, user: { id: userId } });
+    return attendanceRepo.save(a);
   }
 }
