@@ -30,6 +30,11 @@ export class VenuesController {
     return this.vs.addReview(id, { rating: body.rating, comment: body.comment, user: { id: req.user.id } as any });
   }
 
+  @Get(':id/reviews')
+  reviews(@Param('id') id: string) {
+    return this.vs.listReviews(id);
+  }
+
   @Post(':id/attendance')
   @UseGuards(JwtAuthGuard)
   attend(@Param('id') id: string, @Req() req: any) {
