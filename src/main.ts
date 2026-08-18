@@ -8,6 +8,11 @@ async function bootstrap() {
   dotenv.config();
   const app = await NestFactory.create(AppModule, { logger: ['log', 'error', 'warn', 'debug'] });
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+  // global response wrapper and exception filter
+  const { ResponseInterceptor } = await import('./common/response.interceptor');
+  const { AllExceptionsFilter } = await import('./common/http-exception.filter');
+  app.useGlobalInterceptors(new ResponseInterceptor());
+  app.useGlobalFilters(new AllExceptionsFilter());
 
   const config = new DocumentBuilder()
     .setTitle('Slökun API')
