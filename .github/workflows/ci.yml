@@ -3,7 +3,8 @@ name: backend-ci
 on:
   push:
     branches:
-      - '**'
+      - main
+      - schuchanek-nestjs-backend-mvp
   pull_request:
     branches:
       - main
